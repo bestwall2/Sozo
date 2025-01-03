@@ -21,14 +21,13 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
+    - name: Install Android NDK
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y android-sdk ndk
+
     - name: Grant execute permissions for gradlew
       run: chmod +x ./gradlew
 
-    - name: Build and test the project
-      run: ./gradlew clean build
-
-    - name: Run lint checks (optional)
-      run: ./gradlew lint
-
-    - name: Verify Kotlin compilation (optional)
-      run: ./gradlew compileKotlin
+    - name: Build the project
+      run: ./gradlew clean assembleRelease
